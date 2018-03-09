@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">JustFlow</string>
+    <string name="your_rooms">Your Rooms</string>
+    <string name="popular_in_area">Popular in Your Area</string>
+    <string name="top_charts">Top Charts</string>
+    <string name="room_name">Van Dometa</string>
+    <string name="num_of_users">36 People</string>
+</resources>
