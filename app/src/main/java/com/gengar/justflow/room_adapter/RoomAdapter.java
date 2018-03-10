@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,12 +30,18 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         public ImageView imageView;
         public TextView roomName;
         public TextView numOfPeople;
+        public View view;
 
         public RoomCard(View itemView) {
             super(itemView);
+            view = itemView;
             imageView = itemView.findViewById(R.id.room_image);
             roomName = itemView.findViewById(R.id.room_name);
             numOfPeople = itemView.findViewById(R.id.number_of_users);
+        }
+
+        public View getView(){
+            return view;
         }
     }
 
@@ -46,10 +53,11 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 .inflate(R.layout.room_card,null));
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-
+//        ((RoomCard)holder).getView().setAnimation(AnimationUtils.loadAnimation(context,R.anim.zoom_in));
 
 
     }
