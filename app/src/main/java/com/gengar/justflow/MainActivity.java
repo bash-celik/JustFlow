@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
      private RecyclerView yourRoomRecycler;
      private RecyclerView popularInAreaRecycler;
      private RecyclerView topChartRecycler;
-
+     private int current = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,23 +49,26 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 5; i++){
             list.add("aaa");
         }
-        final RoomAdapter adapter = new RoomAdapter(this,list);
-
+        final RoomAdapter yourRoomAdapter = new RoomAdapter(this,list);
         LinearLayoutManager horizontalLayoutManagaerRoom = new LinearLayoutManager(MainActivity.this,
                 LinearLayoutManager.HORIZONTAL, false);
         yourRoomRecycler.setLayoutManager(horizontalLayoutManagaerRoom);
-        yourRoomRecycler.setAdapter(adapter);
+        yourRoomRecycler.setAdapter(yourRoomAdapter);
 
+
+        final RoomAdapter popularAdapter = new RoomAdapter(this,list);
         LinearLayoutManager horizontalLayoutManagaerpopular = new LinearLayoutManager(MainActivity.this,
                 LinearLayoutManager.HORIZONTAL, false);
         popularInAreaRecycler.setLayoutManager(horizontalLayoutManagaerpopular);
-        popularInAreaRecycler.setAdapter(adapter);
+        popularInAreaRecycler.setAdapter(popularAdapter);
 
+
+        final RoomAdapter topAdapter = new RoomAdapter(this,list);
         final LinearLayoutManager horizontalLayoutManagaerTop = new LinearLayoutManager(MainActivity.this,
                 LinearLayoutManager.HORIZONTAL, false);
         topChartRecycler.setLayoutManager(horizontalLayoutManagaerTop);
-        topChartRecycler.setAdapter(adapter);
-
+        topChartRecycler.setAdapter(topAdapter);
+/*
         topChartRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -74,9 +77,19 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("FIRST VISIBLE NUMBER",horizontalLayoutManagaerTop.findFirstCompletelyVisibleItemPosition() + "");
                 Log.e("LAST VISIBLE NUMBER",horizontalLayoutManagaerTop.findLastCompletelyVisibleItemPosition() + "");
 
+
+
+                if(current != horizontalLayoutManagaerTop.findFirstCompletelyVisibleItemPosition()
+                        && horizontalLayoutManagaerTop.findFirstCompletelyVisibleItemPosition() != -1){
+                    horizontalLayoutManagaerTop.findViewByPosition(current)
+                                .setAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.zoom_out));
+
+                }
+
                 if(horizontalLayoutManagaerTop.findFirstCompletelyVisibleItemPosition() != -1) {
                     horizontalLayoutManagaerTop.findViewByPosition(horizontalLayoutManagaerTop.findFirstCompletelyVisibleItemPosition())
                             .setAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.zoom_in));
+                    current = horizontalLayoutManagaerTop.findFirstCompletelyVisibleItemPosition();
 
                 }
 
@@ -86,6 +99,6 @@ public class MainActivity extends AppCompatActivity {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
             }
-        });
+        });*/
     }
 }

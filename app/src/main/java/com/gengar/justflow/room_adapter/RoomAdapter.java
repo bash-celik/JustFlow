@@ -3,9 +3,11 @@ package com.gengar.justflow.room_adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,12 +34,25 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         public TextView numOfPeople;
         public View view;
 
-        public RoomCard(View itemView) {
+        public RoomCard(final View itemView) {
             super(itemView);
             view = itemView;
             imageView = itemView.findViewById(R.id.room_image);
             roomName = itemView.findViewById(R.id.room_name);
             numOfPeople = itemView.findViewById(R.id.number_of_users);
+
+            itemView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean b) {
+                    if(b){
+                        Animation anim = AnimationUtils.loadAnimation(context, R.anim.zoom_in);
+                        itemView.startAnimation(anim);
+                        anim.setFillAfter(true);
+                    }else {
+                        itemView.setAnimation(AnimationUtils.loadAnimation(context,R.anim.zoom_out));
+                    }
+                }
+            });
         }
 
         public View getView(){
