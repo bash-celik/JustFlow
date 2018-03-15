@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gengar.justflow.R;
 
@@ -41,6 +42,9 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             roomName = itemView.findViewById(R.id.room_name);
             numOfPeople = itemView.findViewById(R.id.number_of_users);
 
+            Log.e("Tag","constructor");
+
+
             itemView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View view, boolean b) {
@@ -53,6 +57,13 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                     }
                 }
             });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context, "HELLO, FIREND", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         public View getView(){
@@ -61,11 +72,14 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
 
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new RoomCard(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.room_card,null));
+
+            return new RoomCard(LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.room_card, null));
+
     }
 
 

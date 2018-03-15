@@ -1,13 +1,16 @@
 package com.gengar.justflow;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import com.gengar.justflow.room_adapter.RoomAdapter;
 
@@ -24,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
      private RecyclerView popularInAreaRecycler;
      private RecyclerView topChartRecycler;
      private int current = 0;
+     private FloatingActionButton fab;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         yourRoomRecycler = findViewById(R.id.you_rooms_recycler);
         popularInAreaRecycler = findViewById(R.id.popular_in_area_recycler);
         topChartRecycler = findViewById(R.id.top_charts_recycler);
+        fab = findViewById(R.id.fab_search);
 
 
         /*
@@ -54,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayoutManager.HORIZONTAL, false);
         yourRoomRecycler.setLayoutManager(horizontalLayoutManagaerRoom);
         yourRoomRecycler.setAdapter(yourRoomAdapter);
-
+        yourRoomRecycler.scrollToPosition(4);
+        yourRoomAdapter.notifyItemChanged(4);
 
         final RoomAdapter popularAdapter = new RoomAdapter(this,list);
         LinearLayoutManager horizontalLayoutManagaerpopular = new LinearLayoutManager(MainActivity.this,
@@ -68,37 +75,13 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayoutManager.HORIZONTAL, false);
         topChartRecycler.setLayoutManager(horizontalLayoutManagaerTop);
         topChartRecycler.setAdapter(topAdapter);
-/*
-        topChartRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-
-                Log.e("FIRST VISIBLE NUMBER",horizontalLayoutManagaerTop.findFirstCompletelyVisibleItemPosition() + "");
-                Log.e("LAST VISIBLE NUMBER",horizontalLayoutManagaerTop.findLastCompletelyVisibleItemPosition() + "");
-
-
-
-                if(current != horizontalLayoutManagaerTop.findFirstCompletelyVisibleItemPosition()
-                        && horizontalLayoutManagaerTop.findFirstCompletelyVisibleItemPosition() != -1){
-                    horizontalLayoutManagaerTop.findViewByPosition(current)
-                                .setAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.zoom_out));
-
-                }
-
-                if(horizontalLayoutManagaerTop.findFirstCompletelyVisibleItemPosition() != -1) {
-                    horizontalLayoutManagaerTop.findViewByPosition(horizontalLayoutManagaerTop.findFirstCompletelyVisibleItemPosition())
-                            .setAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.zoom_in));
-                    current = horizontalLayoutManagaerTop.findFirstCompletelyVisibleItemPosition();
-
-                }
-
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "HOHOHO PUN SAM PARA", Toast.LENGTH_SHORT).show();
             }
+        });
 
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });*/
     }
 }
