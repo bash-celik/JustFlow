@@ -5,21 +5,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.gengar.justflow.room_adapter.RoomAdapter;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
      private RecyclerView topChartRecycler;
      private int current = 0;
      private FloatingActionButton fab;
+     private SlidingUpPanelLayout bottom;
 
 
     @Override
@@ -35,15 +33,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+
+        bottom = findViewById(R.id.root);
         yourRoomRecycler = findViewById(R.id.you_rooms_recycler);
         popularInAreaRecycler = findViewById(R.id.popular_in_area_recycler);
         topChartRecycler = findViewById(R.id.top_charts_recycler);
         fab = findViewById(R.id.fab_search);
 
+        bottom.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {
 
-        /*
-        coloring nav bar
-         */
+            }
+
+            @Override
+            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+
+            }
+        });
+
+
+        //coloring nav bar
+
+
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -60,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayoutManager.HORIZONTAL, false);
         yourRoomRecycler.setLayoutManager(horizontalLayoutManagaerRoom);
         yourRoomRecycler.setAdapter(yourRoomAdapter);
-        yourRoomRecycler.scrollToPosition(4);
+       //yourRoomRecycler.scrollToPosition(4);
         yourRoomAdapter.notifyItemChanged(4);
 
         final RoomAdapter popularAdapter = new RoomAdapter(this,list);
