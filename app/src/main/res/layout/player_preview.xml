@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/palyerPreview">
     <ImageView
         android:id="@+id/coverImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/kendi"
+        android:scaleType="centerCrop"
+        android:layout_margin="14dp"
+        />
+    <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/coverImage"
+        android:layout_marginTop="14dp"
+        android:text="Alhemicar"
+        android:textSize="18sp"
+        />
+    <TextView
+        android:id="@+id/artist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_toRightOf="@id/coverImage"
+        android:text="Kendisa nas"
+
+        />
+
 </RelativeLayout>

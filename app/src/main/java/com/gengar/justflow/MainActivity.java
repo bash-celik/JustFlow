@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.gengar.justflow.room_adapter.RoomAdapter;
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
      private int current = 0;
      private FloatingActionButton fab;
      private SlidingUpPanelLayout bottom;
-
+     private RelativeLayout playerPreview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
         bottom = findViewById(R.id.root);
+        playerPreview = findViewById(R.id.palyerPreview);
         yourRoomRecycler = findViewById(R.id.you_rooms_recycler);
         popularInAreaRecycler = findViewById(R.id.popular_in_area_recycler);
         topChartRecycler = findViewById(R.id.top_charts_recycler);
@@ -45,11 +47,16 @@ public class MainActivity extends AppCompatActivity {
         bottom.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
-
+                   // Log.e("OFFSET",slideOffset + "");
             }
 
             @Override
             public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+                   if(newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
+                       playerPreview.setVisibility(View.GONE);
+                   }else if(newState == SlidingUpPanelLayout.PanelState.COLLAPSED){
+                       playerPreview.setVisibility(View.VISIBLE);
+                   }
 
             }
         });
