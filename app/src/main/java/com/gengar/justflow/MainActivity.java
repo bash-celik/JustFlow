@@ -1,6 +1,7 @@
 package com.gengar.justflow;
 
 import android.animation.Animator;
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +18,9 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.deezer.sdk.model.Permissions;
 import com.gengar.justflow.room_adapter.RoomAdapter;
+import com.gengar.justflow.search.Searchable;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
@@ -36,7 +39,11 @@ public class MainActivity extends AppCompatActivity {
      private View tint;
      private SearchView searchView;
      private boolean isOpen = false;
-
+     private static final String appID = "252922";
+    String[] permissions = new String[] {
+            Permissions.BASIC_ACCESS,
+            Permissions.MANAGE_LIBRARY,
+            Permissions.LISTENING_HISTORY };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +90,23 @@ public class MainActivity extends AppCompatActivity {
 
                    }
 
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                Intent i = new Intent(MainActivity.this,Searchable.class);
+                i.putExtra("QUERY",query);
+                startActivity(i);
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
 
@@ -169,4 +193,7 @@ public class MainActivity extends AppCompatActivity {
         animator.start();
 
     }
+
+
+
 }
