@@ -1,5 +1,7 @@
 package com.gengar.justflow;
 
+import android.animation.Animator;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
      private RelativeLayout playerPreview;
      private View tint;
      private SearchView searchView;
+     private boolean isOpen = false;
 
 
     @Override
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 gone();
+
             }
         });
 
@@ -119,10 +124,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "HOHOHO PUN SAM PARA", Toast.LENGTH_SHORT).show();
-                searchView.setVisibility(View.VISIBLE);
-                searchView.setFocusable(true);
-                searchView.requestFocus();
-                tint.setVisibility(View.VISIBLE);
+
+                reveal();
 
             }
         });
@@ -133,5 +136,37 @@ public class MainActivity extends AppCompatActivity {
 
         tint.setVisibility(View.GONE);
         searchView.setVisibility(View.GONE);
+        reveal();
+    }
+
+    private void reveal(){
+        ConstraintLayout layoutMain = findViewById(R.id.constr);
+        RelativeLayout reveler = findViewById(R.id.reveler);
+
+        int startRadius = 0;
+        int endRadius = (int) Math.hypot(layoutMain.getWidth(), layoutMain.getHeight());
+
+        int x,y;
+        if(!isOpen) {
+             x = reveler.getRight();
+             y = reveler.getBottom();
+             isOpen = !isOpen;
+            searchView.setVisibility(View.VISIBLE);
+            searchView.setFocusable(true);
+            searchView.requestFocus();
+            tint.setVisibility(View.VISIBLE);
+
+        }else {
+         x = reveler.getLeft();
+         y = reveler.getTop();
+            searchView.setVisibility(View.GONE);
+            searchView.setFocusable(true);
+            searchView.requestFocus();
+            tint.setVisibility(View.GONE);
+         isOpen = !isOpen;
+        }
+        Animator animator = ViewAnimationUtils.createCircularReveal(reveler,x,y,startRadius,endRadius);
+        animator.start();
+
     }
 }
