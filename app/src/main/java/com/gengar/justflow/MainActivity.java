@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
      private SlidingUpPanelLayout bottom;
      private RelativeLayout playerPreview;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +55,12 @@ public class MainActivity extends AppCompatActivity {
             public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
                    if(newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
                        playerPreview.setVisibility(View.GONE);
+                       findViewById(R.id.player).setVisibility(View.VISIBLE);
+
                    }else if(newState == SlidingUpPanelLayout.PanelState.COLLAPSED){
                        playerPreview.setVisibility(View.VISIBLE);
+                       findViewById(R.id.player).setVisibility(View.GONE);
+
                    }
 
             }

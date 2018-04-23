@@ -5,4 +5,7 @@
     <string name="top_charts">Top Charts</string>
     <string name="room_name">Van Dometa</string>
     <string name="num_of_users">Kendi Bumaeee</string>
+    <string name="next">next</string>
+    <string name="back">back</string>
+    <string name="play">play</string>
 </resources>

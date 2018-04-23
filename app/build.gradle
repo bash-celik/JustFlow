@@ -36,6 +36,9 @@ dependencies {
     //Android Sliding up panel
     compile 'com.sothree.slidinguppanel:library:3.4.0'
 
+    //audio visualizer
+
+    compile 'com.chibde:audiovisualizer:2.0.1'
 
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])

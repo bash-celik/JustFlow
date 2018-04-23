@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/player">
+
+    <ImageView
+        android:id="@+id/cover"
+        android:layout_width="580dp"
+        android:layout_height="580dp"
+        android:src="@drawable/van_dometa"
+        android:layout_centerHorizontal="true"
+        />
+
+    <com.chibde.visualizer.LineBarVisualizer
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/control"
+        android:layout_marginBottom="36dp"
+
+        />
+
+
+    <LinearLayout
+        android:id="@+id/control"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/cover"
+        android:layout_marginTop="6dp"
+        >
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_fast_forward_button"
+            android:rotation="180"
+            android:backgroundTint="#00ffffff"
+            android:layout_margin="14dp"
+            android:contentDescription="@string/back"
+            />
+        <ImageButton
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_button"
+            android:backgroundTint="#00ffffff"
+            android:layout_margin="14dp"
+            android:contentDescription="@string/play"/>
+        <ImageButton
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_fast_forward_button"
+            android:backgroundTint="#00ffffff"
+            android:layout_margin="14dp"
+            android:contentDescription="@string/next"
+            />
+    </LinearLayout>
+</RelativeLayout>
