@@ -16,7 +16,6 @@
         android:background="@color/colorPrimary"
         android:orientation="vertical">
 
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -91,6 +90,23 @@
 
         </ScrollView>
 
+        <View
+            android:id="@+id/tint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000"
+            />
+
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:layout_margin="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:iconifiedByDefault="false"
+            />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_search"

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
      private FloatingActionButton fab;
      private SlidingUpPanelLayout bottom;
      private RelativeLayout playerPreview;
+     private View tint;
+     private SearchView searchView;
 
 
     @Override
@@ -37,13 +40,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
+        searchView = findViewById(R.id.searchView);
+        searchView.setVisibility(View.GONE);
+        tint =  findViewById(R.id.tint);
+        tint.setVisibility(View.GONE);
         bottom = findViewById(R.id.root);
         playerPreview = findViewById(R.id.palyerPreview);
         yourRoomRecycler = findViewById(R.id.you_rooms_recycler);
         popularInAreaRecycler = findViewById(R.id.popular_in_area_recycler);
         topChartRecycler = findViewById(R.id.top_charts_recycler);
         fab = findViewById(R.id.fab_search);
+
+        tint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gone();
+            }
+        });
+
+
 
         bottom.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
@@ -68,8 +83,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         //coloring nav bar
-
-
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -106,8 +119,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "HOHOHO PUN SAM PARA", Toast.LENGTH_SHORT).show();
+                searchView.setVisibility(View.VISIBLE);
+                searchView.setFocusable(true);
+                searchView.requestFocus();
+                tint.setVisibility(View.VISIBLE);
+
             }
         });
 
+    }
+
+    private void gone() {
+
+        tint.setVisibility(View.GONE);
+        searchView.setVisibility(View.GONE);
     }
 }
