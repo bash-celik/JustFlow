@@ -1,6 +1,7 @@
 package com.gengar.justflow.network;
 
-import com.gengar.justflow.Search;
+
+import com.gengar.justflow.pojo.com.gengar.justflow.Search;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

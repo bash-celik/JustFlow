@@ -1,7 +1,7 @@
-
-package com.gengar.justflow;
+package com.gengar.justflow.pojo.com.gengar.justflow;
 
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
