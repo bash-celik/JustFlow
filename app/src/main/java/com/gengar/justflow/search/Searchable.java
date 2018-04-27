@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.deezer.sdk.player.AlbumPlayer;
 import com.gengar.justflow.R;
 import com.gengar.justflow.network.Api;
 import com.gengar.justflow.network.ApiUtill;
@@ -34,27 +35,21 @@ public class Searchable extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         api = ApiUtill.getApi();
-        recyclerView = findViewById(R.id.recycler);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        recyclerSetup();
 
         api.getSearchArtist(getIntent().getStringExtra("QUERY"),"json").enqueue(new Callback<Search>() {
             @Override
             public void onResponse(Call<Search> call, Response<Search> response) {
                 if (response.isSuccessful()) {
-                    System.out.println(response.raw());
-                    System.out.println(response.body());
-                    adapter.setList(response.body().getData());
-                    adapter.notifyDataSetChanged();
 
+                    adapterSetup(response);
 
                 }else {
-                    Toast.makeText(Searchable.this, "Request has faild, just like u did your parents", Toast.LENGTH_LONG).show();
-
+                    Toast.makeText(Searchable.this, "Request has failed, just like u did your parents", Toast.LENGTH_LONG).show();
                 }
 
             }
-
             @Override
             public void onFailure(Call<Search> call, Throwable t) {
 
@@ -63,6 +58,20 @@ public class Searchable extends AppCompatActivity {
             }
         });
 
+        AlbumPlayer albumPlayer =  new AlbumPlayer();
+
     }
 
+
+    void recyclerSetup(){
+        recyclerView = findViewById(R.id.recycler);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+    void adapterSetup( Response<Search> response){
+        System.out.println(response.raw());
+        System.out.println(response.body());
+        adapter.setList(response.body().getData());
+        adapter.notifyDataSetChanged();
+    }
 }
